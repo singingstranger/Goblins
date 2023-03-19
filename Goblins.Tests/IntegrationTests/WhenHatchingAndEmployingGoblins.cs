@@ -13,7 +13,7 @@ namespace Goblins.Tests.IntegrationTests
                 .Employ(
                     new GoblinHatchery(
                         new TestGoblinProvider()
-                        ).Hatch().ToList());
+                        ).Hatch());
 
         [Fact]
         public void ThenAllGoblinsGetJobs() =>
