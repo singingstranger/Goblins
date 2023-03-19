@@ -4,8 +4,12 @@
     {
         private readonly IGoblinProvider goblinProvider;
 
-        public GoblinHatchery(IGoblinProvider goblinProvider) =>
+        public GoblinHatchery(IGoblinProvider goblinProvider){
             this.goblinProvider = goblinProvider;
+            int goblinCount = goblinProvider.GetEggCount();
+            Console.Write("Goblin Count is: "+goblinCount);
+        }
+            
 
         public IEnumerable<Goblin> Hatch() =>
             Enumerable.Range(0, goblinProvider.GetEggCount())

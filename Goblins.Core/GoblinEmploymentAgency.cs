@@ -11,14 +11,17 @@ namespace Goblins.Core
                         goblin.Job = "Rejected";
                         return goblin;
                     }
-                    if (goblin.Tools.OfType<Pickaxe>().Any())
-                    {
-                        goblin.Job = "Miner";   
+                    else {
+                        if (goblin.Tools.OfType<Pickaxe>().Any())
+                        {
+                            goblin.Job = "Miner";   
+                        }
+                        else 
+                        {
+                            goblin.Job = "Writer";
+                        }
                     }
-                    else 
-                    {
-                        goblin.Job = "Writer";
-                    }
+                    
                     
                     return goblin;
                 });

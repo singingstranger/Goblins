@@ -21,7 +21,7 @@ namespace Goblins.Tests.UnitTests
         }   
 
         [Fact]
-        public void ThenRedPenGoblinsAreMiners() 
+        public void ThenRedPickaxeGoblinsAreMiners() 
         {
             var employmentAgency = new GoblinEmploymentAgency();
             var goblin = new Goblin();
