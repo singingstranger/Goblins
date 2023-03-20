@@ -48,24 +48,13 @@ namespace Goblins.Tests
 
         public int GetEggCount() =>
             goblins.Count();
-        
+
+        public Colour GetRandomGoblinColour() =>
+            goblins[numberOfTimesColourWasCounted++].Colour;
             
 
-        public Colour GetRandomGoblinColour()
-        {
-            var color = goblins[numberOfTimesColourWasCounted].Colour;
-            numberOfTimesColourWasCounted++;
-            return color;
-        }
-            
-
-        public ITool? GetRandomTool() 
-        {
-            var tool = goblins[numberOfTimesToolWasCounted].Tools;
-            numberOfTimesToolWasCounted++;
-            return tool.FirstOrDefault();
-        }
-            //goblins[numberOfTimesToolWasCounted++].Tools.FirstOrDefault();
+        public ITool? GetRandomTool() =>
+            goblins[numberOfTimesToolWasCounted++].Tools.FirstOrDefault();
             
     }
 }
