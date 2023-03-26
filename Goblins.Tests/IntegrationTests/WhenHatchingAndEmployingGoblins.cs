@@ -55,7 +55,7 @@ namespace Goblins.Tests.IntegrationTests
                 {
                     Colour = Colour.Green,
                     Tools = Array.Empty<ITool>(),
-                    Job = "Writer",
+                    Job = "Tower",
                 },
                 new Goblin()
                 {

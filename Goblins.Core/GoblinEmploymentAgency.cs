@@ -9,19 +9,27 @@ namespace Goblins.Core
                 {
                     if (goblin.Colour == Colour.Blue){
                         goblin.Job = "Rejected";
-                        return goblin;
                     }
-                    else {
+                    else if (goblin.Colour == Colour.Red)
+                    {
                         if (goblin.Tools.OfType<Pickaxe>().Any())
                         {
                             goblin.Job = "Miner";   
                         }
-                        else 
+                        else if (goblin.Tools.Any())
                         {
                             goblin.Job = "Writer";
                         }
+                        else 
+                        {
+                            goblin.Job = "Tower";
+                        }
+                        
                     }
-                    
+                    else 
+                    {
+                        goblin.Job = "Tower";
+                    }
                     
                     return goblin;
                 });
