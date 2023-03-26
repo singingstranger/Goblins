@@ -6,8 +6,16 @@ namespace Goblins.Tests.IntegrationTests
 {
     public class WhenHatchingAndEmployingGoblins
     {
-        private IEnumerable<Goblin> employedGoblins = new GoblinEmploymentAgency()
-                    .Employ(new GoblinHatchery(new TestGoblinDataProvider())
+        private IEnumerable<Goblin> employedGoblins = 
+            new GoblinEmploymentAgency()
+                    .Employ(new GoblinHatchery(
+                        new TestGoblinDataProvider(
+                            new(Colour.Red, new[] { new Pen() }),
+                            new(Colour.Red, new[] { new Pickaxe() }),
+                            new(Colour.Blue, new[] { new Pen() }),
+                            new(Colour.Green, Array.Empty<ITool>()),
+                            new(Colour.Red, new ITool[] { new Pen(), new Pickaxe() })
+                            ))
                         .Hatch());
 
         [Fact]

@@ -3,17 +3,15 @@ using Goblins.Core.Tools;
 
 namespace Goblins.Tests
 {
+    public record class TestGoblinData(Colour Colour, ITool[] Tools);
+    
     internal class TestGoblinDataProvider : IGoblinDataProvider
     {
-        IList<TestGoblinData> goblinData = new List<TestGoblinData>()
-        {
-            new(Colour.Red, new [] {new Pen()}),
-            new(Colour.Red, new [] {new Pickaxe()}),
-            new(Colour.Blue, new [] {new Pen()}),
-            new(Colour.Green, Array.Empty<ITool>()),
-            new(Colour.Red, new ITool[] { new Pen(), new Pickaxe() }),
-        };
-        internal record class TestGoblinData(Colour Colour, ITool[] Tools);
+        private IList<TestGoblinData> goblinData;
+
+        public TestGoblinDataProvider(params TestGoblinData[] goblinData) =>
+            this.goblinData = goblinData.ToList();
+
 
         public int GetEggCount() =>
             goblinData.Count();

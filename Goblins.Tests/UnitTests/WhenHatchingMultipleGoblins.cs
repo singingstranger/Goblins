@@ -10,7 +10,14 @@ namespace Goblins.Tests.UnitTests
         const Colour GoblinColour = Colour.Blue;
         static Pen GoblinTool = new();
 
-        IEnumerable<Goblin> goblins = new GoblinHatchery(new TestSingleGoblinDataProvider(GoblinCount,GoblinColour,GoblinTool)).Hatch();
+        IEnumerable<Goblin> goblins = 
+            new GoblinHatchery(
+                new TestGoblinDataProvider(
+                    Enumerable
+                        .Range(0, GoblinCount)
+                        .Select(i => new TestGoblinData(GoblinColour, new[] { GoblinTool })
+                    ).ToArray()))
+            .Hatch();
 
         [Fact]
         public void ThenIShouldHaveTheRightNumberOfGoblins() =>
