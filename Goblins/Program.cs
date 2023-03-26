@@ -2,7 +2,7 @@
 using Goblins.Core;
 
 Console.WriteLine("Welcome to my wonderful Goblin Hatchery!");
-var eggProvider = new GoblinProvider();
+var eggProvider = new RandomGoblinDataProvider();
 var hatchery = new GoblinHatchery(eggProvider);
 var employmentAgency = new GoblinEmploymentAgency();
 
@@ -22,13 +22,6 @@ foreach(var goblin in employedGoblins)
 //And blue goblins get rejected
 //And all other goblins go to the tower
 
-//Given a set of freshly hatched goblins,
-//When one has a pen
-//Then they are renamed to "writer"
-
-//Given a set of freshly hatched goblins,
-//When given a list of Items
-//Then only the ones with pickaxes get given rocks
 
 //Given a green goblin with a pen
 //When that goblin is sent to the tower

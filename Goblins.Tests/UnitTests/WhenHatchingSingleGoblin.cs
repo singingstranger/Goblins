@@ -6,7 +6,11 @@ namespace Goblins.Tests.UnitTests
     public class WhenHatchingSingleGoblin
     {
 
-        IEnumerable<Goblin> goblins = new GoblinHatchery(new TestSingleGoblinProvider(1,Colour.Red, null)).Hatch();
+        IEnumerable<Goblin> goblins = 
+            new GoblinHatchery(
+                new TestGoblinDataProvider(
+                    new TestGoblinData(Colour.Red, null)))
+            .Hatch();
 
 
         [Fact]
