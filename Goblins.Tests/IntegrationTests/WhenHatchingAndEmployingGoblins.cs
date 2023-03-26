@@ -1,43 +1,49 @@
 ﻿using FluentAssertions;
 using Goblins.Core;
-using Xunit.Abstractions;
+using Goblins.Core.Tools;
 
 namespace Goblins.Tests.IntegrationTests
 {
     public class WhenHatchingAndEmployingGoblins
     {
-        private IEnumerable<Goblin> employedGoblins;
-
-        static TestGoblinProvider provider = new();
-
-        public WhenHatchingAndEmployingGoblins(ITestOutputHelper outputHelper)
-        {
-            var hatchery = new GoblinHatchery(provider, outputHelper);
-            
-            var hatchedGoblins = hatchery.Hatch();
-
-            employedGoblins = new GoblinEmploymentAgency()
-                .Employ(hatchedGoblins);
-        }
-
         [Fact]
-        public void ThenAllGoblinsGetJobs_RegularMode()
-        {
-            foreach (var goblin in employedGoblins)
+        public void ThenAllGoblinsGetTheRightColoursToolsAndJobs() =>
+            new GoblinEmploymentAgency()
+                .Employ(new GoblinHatchery(new TestGoblinProvider())
+                    .Hatch())
+            .Should().BeEquivalentTo(new[]
             {
-                goblin.Job.Should().NotBeNullOrEmpty();
-                goblin.Name.Should().NotBeNullOrEmpty();
-            }
-        }
-
-        [Fact]
-        public void ThenAllGoblinsGetJobs_FluentAllTheWayMode() =>
-            employedGoblins.Should()
-            .AllSatisfy(goblin =>
-            {
-                goblin.Job.Should().NotBeNullOrEmpty();
-                goblin.Name.Should().NotBeNullOrEmpty();
-
-            });
+                new Goblin()
+                {
+                    Colour = Colour.Red,
+                    Tools = new[] { new Pen() },
+                    Job = "Writer",
+                },
+                new Goblin()
+                {
+                    Colour = Colour.Red,
+                    Tools = new[] { new Pickaxe() },
+                    Job = "Miner",
+                },
+                new Goblin()
+                {
+                    Colour = Colour.Blue,
+                    Tools = new[] { new Pen() },
+                    Job = "Rejected",
+                },
+                new Goblin()
+                {
+                    Colour = Colour.Green,
+                    Tools = Array.Empty<ITool>(),
+                    Job = "Writer",
+                },
+                new Goblin()
+                {
+                    Colour = Colour.Red,
+                    Tools = new ITool[] { new Pen(), new Pickaxe() },
+                    Job = "Miner"
+                }
+            }, 
+                options => options.Excluding(goblin => goblin.Name));
     }
 }

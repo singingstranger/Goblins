@@ -22,8 +22,8 @@ namespace Goblins.Tests
         public Colour GetRandomGoblinColour() => 
             colour;
 
-        public ITool? GetRandomTool()=>
-            tool;
+        public ITool[] GetRandomTools() =>
+            tool is null ? Array.Empty<ITool>() : new[] { tool };
 
     }
 }

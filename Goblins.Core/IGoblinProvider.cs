@@ -6,6 +6,6 @@ namespace Goblins.Core
     {
         int GetEggCount();
         Colour GetRandomGoblinColour();
-        ITool? GetRandomTool();
+        ITool[] GetRandomTools();
     }
 }

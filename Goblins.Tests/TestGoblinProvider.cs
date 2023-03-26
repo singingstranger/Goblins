@@ -5,56 +5,27 @@ namespace Goblins.Tests
 {
     internal class TestGoblinProvider : IGoblinProvider
     {
-        List<Goblin> goblins = new List<Goblin>();
         int numberOfTimesColourWasCounted = 0;
         int numberOfTimesToolWasCounted = 0;
 
-        public TestGoblinProvider()
+        IList<TestGoblinData> goblinData = new List<TestGoblinData>()
         {
-            goblins.Add(new Goblin()
-            {
-                Colour = Colour.Red,
-                Tools = new [] {new Pen()},
-                Name = "Boris"
-            });
-            goblins.Add(new Goblin()
-            {
-                Colour = Colour.Red,
-                Tools = new [] {new Pickaxe()},
-                Name = "Dennis"
-            });
-            goblins.Add(new Goblin()
-            {
-                Colour = Colour.Blue,
-                Tools = new [] {new Pen()},
-                Name = "Hanna"
-            });
-            goblins.Add(new Goblin()
-            {
-                Colour = Colour.Green,
-                Name = "Steve"
-            });
-            goblins.Add(new Goblin()
-            {
-                Colour = Colour.Red,
-                Tools = new ITool[] {new Pen(), new Pickaxe()},
-                Name = "Geroge"
-            });
-            goblins.Add(new Goblin()
-            {
-                Name = "Void"
-            });
-        }
+            new(Colour.Red, new [] {new Pen()}),
+            new(Colour.Red, new [] {new Pickaxe()}),
+            new(Colour.Blue, new [] {new Pen()}),
+            new(Colour.Green, Array.Empty<ITool>()),
+            new(Colour.Red, new ITool[] { new Pen(), new Pickaxe() }),
+        };
+        internal record class TestGoblinData(Colour Colour, ITool[] Tools);
 
         public int GetEggCount() =>
-            goblins.Count();
+            goblinData.Count();
 
         public Colour GetRandomGoblinColour() =>
-            goblins[numberOfTimesColourWasCounted++].Colour;
-            
+            goblinData[numberOfTimesColourWasCounted++].Colour;
 
-        public ITool? GetRandomTool() =>
-            goblins[numberOfTimesToolWasCounted++].Tools.FirstOrDefault();
+        public ITool[] GetRandomTools() =>
+            goblinData[numberOfTimesToolWasCounted++].Tools;
             
     }
 }

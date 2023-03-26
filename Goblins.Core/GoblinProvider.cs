@@ -15,7 +15,8 @@ namespace Goblins.Core
                 .OrderBy(colour => random.Next())
                 .First();
 
-        public ITool? GetRandomTool() => 
-            Activator.CreateInstance(ToolTypes[random.Next(ToolTypes.Count())]) as ITool;
+        public ITool[] GetRandomTools() => 
+             new [] { (ITool)Activator.CreateInstance(ToolTypes[random.Next(ToolTypes.Count())])! };
+
     }
 }
