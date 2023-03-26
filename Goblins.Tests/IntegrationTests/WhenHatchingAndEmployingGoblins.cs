@@ -6,11 +6,23 @@ namespace Goblins.Tests.IntegrationTests
 {
     public class WhenHatchingAndEmployingGoblins
     {
+        private IEnumerable<Goblin> employedGoblins = new GoblinEmploymentAgency()
+                    .Employ(new GoblinHatchery(new TestGoblinDataProvider())
+                        .Hatch());
+
+        [Fact]
+        public void ThenAllGoblinsGetJobs_FluentAllTheWayMode() =>
+            employedGoblins
+            .Should().AllSatisfy(goblin =>
+            {
+                goblin.Job.Should().NotBeNullOrEmpty();
+                goblin.Name.Should().NotBeNullOrEmpty();
+
+            });
+
         [Fact]
         public void ThenAllGoblinsGetTheRightColoursToolsAndJobs() =>
-            new GoblinEmploymentAgency()
-                .Employ(new GoblinHatchery(new TestGoblinDataProvider())
-                    .Hatch())
+            employedGoblins
             .Should().BeEquivalentTo(new[]
             {
                 new Goblin()
