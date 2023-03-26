@@ -2,9 +2,9 @@
 {
     public class GoblinHatchery
     {
-        private readonly IGoblinProvider goblinProvider;
+        private readonly IGoblinDataProvider goblinProvider;
 
-        public GoblinHatchery(IGoblinProvider goblinProvider) => 
+        public GoblinHatchery(IGoblinDataProvider goblinProvider) => 
             this.goblinProvider = goblinProvider;
 
 
@@ -15,8 +15,8 @@
                     return new Goblin()
                     {
                         Name = $"Goblin number {i}",
-                        Colour = goblinProvider.GetRandomGoblinColour(),
-                        Tools = goblinProvider.GetRandomTools()
+                        Colour = goblinProvider.GetColour(i),
+                        Tools = goblinProvider.GetTools(i)
                     };
                 });
     }

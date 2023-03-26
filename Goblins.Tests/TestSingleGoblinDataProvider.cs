@@ -3,13 +3,13 @@ using Goblins.Core.Tools;
 
 namespace Goblins.Tests
 {
-    internal class TestSingleGoblinProvider : IGoblinProvider
+    internal class TestSingleGoblinDataProvider : IGoblinDataProvider
     {
         private readonly int count;
         private readonly Colour colour;
         private readonly ITool? tool;
 
-        public TestSingleGoblinProvider(int count, Colour colour, ITool? tool)
+        public TestSingleGoblinDataProvider(int count, Colour colour, ITool? tool)
         {
             this.count = count;
             this.colour = colour;
@@ -19,10 +19,10 @@ namespace Goblins.Tests
         public int GetEggCount() => 
             count;
 
-        public Colour GetRandomGoblinColour() => 
+        public Colour GetColour(int index) => 
             colour;
 
-        public ITool[] GetRandomTools() =>
+        public ITool[] GetTools(int index) =>
             tool is null ? Array.Empty<ITool>() : new[] { tool };
 
     }

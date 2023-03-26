@@ -9,7 +9,7 @@ namespace Goblins.Tests.IntegrationTests
         [Fact]
         public void ThenAllGoblinsGetTheRightColoursToolsAndJobs() =>
             new GoblinEmploymentAgency()
-                .Employ(new GoblinHatchery(new TestGoblinProvider())
+                .Employ(new GoblinHatchery(new TestGoblinDataProvider())
                     .Hatch())
             .Should().BeEquivalentTo(new[]
             {
