@@ -75,5 +75,19 @@ namespace Goblins.Tests.UnitTests
 
             employedGoblins.Single().Job.Should().Be("Tower");
         }
+
+        [Fact]
+        public void ThenRedGoblinsWithTwoToolsGetRejected()
+        {
+            var employmentAgency = new GoblinEmploymentAgency();
+            var goblin = new Goblin();
+            goblin.Colour = Colour.Red;
+            goblin.Tools = new ITool[] {new Pickaxe(), new Pen()};
+            var goblinArray = new [] {goblin};
+
+            var employedGoblins = employmentAgency.Employ(goblinArray);
+
+            employedGoblins.Single().Job.Should().Be("Rejected");
+        }
     }
 }

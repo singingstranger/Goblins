@@ -61,7 +61,7 @@ namespace Goblins.Tests.IntegrationTests
                 {
                     Colour = Colour.Red,
                     Tools = new ITool[] { new Pen(), new Pickaxe() },
-                    Job = "Miner"
+                    Job = "Rejected"
                 }
             }, 
                 options => options.Excluding(goblin => goblin.Name));
