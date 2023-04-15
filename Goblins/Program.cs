@@ -10,9 +10,9 @@ var goblins = hatchery.Hatch();
 
 var employedGoblins = employmentAgency.Employ(goblins);
 
-foreach(var goblin in employedGoblins)
+foreach(var employedGoblin in employedGoblins)
 {
-    Console.WriteLine($"Goblin hatched! They are called {goblin.Name} and they are {goblin.Colour} and they weild a {goblin.Tools.First().GetType().Name} in their job as {goblin.Job}");
+    Console.WriteLine($"Goblin hatched! They are called {employedGoblin.Goblin.Name} and they are {employedGoblin.Goblin.Colour} and they weild a {employedGoblin.Goblin.Tools.First().GetType().Name} in their job as {employedGoblin.Job}");
 }
 
 //Given a set of freshly hatched goblins,
