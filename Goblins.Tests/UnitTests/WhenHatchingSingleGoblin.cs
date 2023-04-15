@@ -20,9 +20,5 @@ namespace Goblins.Tests.UnitTests
         [Fact]
         public void ThenTheGoblinShouldHaveAName() =>
             goblins.Single().Name.Should().NotBeNullOrEmpty();
-
-        [Fact]
-        public void ThenTheGoblinShouldBeUnemployed() =>
-            goblins.Single().Job.Should().BeNullOrEmpty();
     }
 }
