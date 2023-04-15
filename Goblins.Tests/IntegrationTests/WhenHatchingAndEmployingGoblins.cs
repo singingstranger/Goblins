@@ -6,7 +6,7 @@ namespace Goblins.Tests.IntegrationTests
 {
     public class WhenHatchingAndEmployingGoblins
     {
-        private IEnumerable<Goblin> employedGoblins = 
+        private IEnumerable<EmployedGoblin> employedGoblins = 
             new GoblinEmploymentAgency()
                     .Employ(new GoblinHatchery(
                         new TestGoblinDataProvider(
@@ -24,7 +24,7 @@ namespace Goblins.Tests.IntegrationTests
             .Should().AllSatisfy(goblin =>
             {
                 goblin.Job.Should().NotBeNullOrEmpty();
-                goblin.Name.Should().NotBeNullOrEmpty();
+                goblin.Goblin.Name.Should().NotBeNullOrEmpty();
 
             });
 
@@ -33,37 +33,52 @@ namespace Goblins.Tests.IntegrationTests
             employedGoblins
             .Should().BeEquivalentTo(new[]
             {
-                new Goblin()
+                new EmployedGoblin()
                 {
-                    Colour = Colour.Red,
-                    Tools = new[] { new Pen() },
+                    Goblin = new Goblin 
+                    {
+                        Colour = Colour.Red,
+                        Tools = new[] { new Pen() },
+                    },
                     Job = "Writer",
                 },
-                new Goblin()
+                new EmployedGoblin()
                 {
-                    Colour = Colour.Red,
-                    Tools = new[] { new Pickaxe() },
+                    Goblin = new Goblin
+                    {
+                        Colour = Colour.Red,
+                        Tools = new[] { new Pickaxe() },
+                    },
                     Job = "Miner",
                 },
-                new Goblin()
+                new EmployedGoblin()
                 {
-                    Colour = Colour.Blue,
-                    Tools = new[] { new Pen() },
+                    Goblin = new Goblin
+                    {
+                        Colour = Colour.Blue,
+                        Tools = new[] { new Pen() },
+                    },
                     Job = "Rejected",
                 },
-                new Goblin()
+                new EmployedGoblin()
                 {
-                    Colour = Colour.Green,
-                    Tools = Array.Empty<ITool>(),
+                    Goblin = new Goblin
+                    {
+                        Colour = Colour.Green,
+                        Tools = Array.Empty<ITool>(),
+                    },
                     Job = "Tower",
                 },
-                new Goblin()
+                new EmployedGoblin()
                 {
-                    Colour = Colour.Red,
-                    Tools = new ITool[] { new Pen(), new Pickaxe() },
+                    Goblin = new Goblin
+                    {
+                        Colour = Colour.Red,
+                        Tools = new ITool[] { new Pen(), new Pickaxe() },
+                    },
                     Job = "Rejected"
                 }
             }, 
-                options => options.Excluding(goblin => goblin.Name));
+            options => options.Excluding(goblin => goblin.Goblin.Name));
     }
 }
